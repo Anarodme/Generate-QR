@@ -15,7 +15,7 @@ export function Component() {
   const [qrSize, setQrSize] = useState(200); // Tamaño predeterminado del código QR
 
   const isValidUrl = (url: string) => {
-    const urlPattern = /^(https?:\/\/)?([\w.]+)\.([a-z]{2,6}\.?)(\/[\w.]*)*\/?$/i;
+    const urlPattern = /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|(((\d{1,3}\.){3}\d{1,3}))|localhost)(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i;
     return urlPattern.test(url);
   };
 
@@ -77,7 +77,7 @@ export function Component() {
           />
           {!isValidLink && <p className="text-red-500">Invalid URL</p>} {/* Mostrar mensaje de error si la URL es inválida */}
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between bg-gray">
           <Label htmlFor="size">Size</Label>
           <div className="flex items-center space-x-4 text-white">
             <Input
@@ -87,9 +87,9 @@ export function Component() {
               max="500"
               value={qrSize}
               onChange={(e) => setQrSize(parseInt(e.target.value))}
-              className="w-full text-center bg-white text-white"
+              className="w-full text-center bg-white text-black"
             />
-            <span className="text-gray-900 dark:text-gray-100">px</span>
+            <span className="text-gray-900 dark:text-black-300">px</span>
           </div>
         </div>
         <div>
